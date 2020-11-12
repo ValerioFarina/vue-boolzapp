@@ -23,8 +23,8 @@
                         </div>
                     </header>
 
-                    <section id="contacts">
-                        <div id="search-contact">
+                    <section id="search-contacts">
+                        <div id="search-bar">
                             <button>
                                 <i class="fas fa-search"></i>
                             </button>
@@ -32,11 +32,13 @@
                             <input placeholder="Cerca un contatto">
                         </div>
 
-                        <div class="contact" v-for="(contact, index) in contacts">
-                            <img :src="'img/avatar_' + (index + 1) + '.png'">
-                            <div class="info">
-                                <div class="name">
-                                    {{ contact.name }}
+                        <div id="contacts">
+                            <div class="contact" v-for="(contact, index) in contacts">
+                                <img :src="'img/avatar_' + (index + 1) + '.png'">
+                                <div class="info">
+                                    <div class="name">
+                                        {{ contact.name }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +51,7 @@
                             <img :src="'img/avatar_' + (currentIndex + 1) + '.png'">
                             <div class="info">
                                 <div class="name">
-                                    Michele
+                                    {{ contacts[currentIndex].name }}
                                 </div>
                                 <div class="last-update">
                                     Ultimo aggiornamento oggi alle 15.40
@@ -66,14 +68,8 @@
 
                     <section id="chat">
                         <div id ="messages">
-                            <div class="message received">
-                                Ciao, come stai ?
-                            </div>
-                            <div class="message sent">
-                                Bene, tu ?
-                            </div>
-                            <div class="message received">
-                                Io ho il raffreddore
+                            <div v-for="object in contacts[currentIndex].messages" class="message" :class="object.status">
+                                {{ object.message }}
                             </div>
                         </div>
 

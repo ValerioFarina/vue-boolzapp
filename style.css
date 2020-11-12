@@ -25,8 +25,6 @@
 }
 
 aside {
-    display: flex;
-    flex-direction: column;
     width: 35%;
     border-right: 1px solid black;
 }
@@ -122,25 +120,30 @@ header .avatar {
     height: 100%;
 }
 
-#contacts {
+#search-contacts {
     background-color: white;
-    flex-grow: 1;
+    height: 90%;
 }
 
-#search-contact {
+#search-bar {
     height: 45px;
     padding: 8px;
     display: flex;
 }
 
-#search-contact input {
+#search-bar input {
     flex-grow: 1;
 }
 
-#search-contact button {
+#search-bar button {
     margin-right: 5px;
     width: 45px;
     line-height: 100%;
+}
+
+#contacts {
+    overflow-y: scroll;
+    height: calc(100% - 45px);
 }
 
 .contact {
