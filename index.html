@@ -12,13 +12,37 @@
             <div id="container">
                 <aside>
                     <header>
+                        <div class="avatar">
+                            <img src="img/my_avatar.png">
+                        </div>
 
+                        <div class="actions">
+                            <i class="fas fa-circle-notch"></i>
+                            <i class="fas fa-comment-alt"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
                     </header>
                 </aside>
 
                 <main>
                     <header>
-                        
+                        <div class="avatar">
+                            <img :src="'img/avatar_' + currentContact + '.png'">
+                            <div class="info">
+                                <div class="name">
+                                    Michele
+                                </div>
+                                <div class="last-update">
+                                    Ultimo aggiornamento oggi alle 15.40
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="actions">
+                            <i class="fas fa-search"></i>
+                            <i class="fas fa-paperclip"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
                     </header>
                 </main>
             </div>

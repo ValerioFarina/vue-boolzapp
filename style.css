@@ -32,5 +32,37 @@ main {
 
 header {
     height: 10%;
+    padding: 8px;
     background-color: black;
+    color: white;
+}
+
+.avatar {
+    display: flex;
+    height: 100%;
+    float: left;
+}
+
+.avatar img {
+    height: 100%;
+}
+
+.avatar .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+    font-size: 14px;
+}
+
+.actions {
+    height: 100%;
+    float: right;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.actions i {
+    margin-right: 15px;
 }
