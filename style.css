@@ -75,7 +75,8 @@ header .avatar {
 }
 
 #chat .message {
-    padding: 15px;
+    position: relative;
+    padding: 20px 25px;
     border-radius: 8px;
     clear: both;
     max-width: 40%;
@@ -91,6 +92,13 @@ header .avatar {
 #chat .message.sent {
     float: right;
     background-color: #91f483;
+}
+
+#chat .message .hour {
+    font-size: 8px;
+    position: absolute;
+    bottom: 5px;
+    right: 3px;
 }
 
 #chat #messages {

@@ -68,8 +68,13 @@
 
                     <section id="chat">
                         <div id ="messages">
-                            <div v-for="object in contacts[currentIndex].messages" class="message" :class="object.status">
-                                {{ object.message }}
+                            <div v-for="element in contacts[currentIndex].messages" class="message" :class="element.status">
+                                <div class="text">
+                                    {{ element.message }}
+                                </div>
+                                <div class="hour">
+                                    {{ getHour(element) }}
+                                </div>
                             </div>
                         </div>
 

@@ -133,10 +133,13 @@ var app = new Vue({
     },
 
     methods: {
+        // this function adds a new message to the currently displayed conversation
+        // the message will appear (inside the div with id "messages") to the right and within a green box
+        // the message will not be sent if it is an empty string
         sendMessage() {
             if (this.newMessage != '') {
                 let myMessage = {
-                    date: undefined,
+                    date: '',
                     message: this.newMessage,
                     status: 'sent'
                 };
@@ -145,6 +148,15 @@ var app = new Vue({
 
                 this.newMessage = '';
             }
+        },
+
+        // this function takes as input an object representing a message
+        // and returns as output a string corresponding to the hour the message was sent
+        // this returned string is a substring of message.date
+        getHour(message) {
+            let firstIndex = message.date.indexOf(' ') + 1;
+            let lastIndex = message.date.length - 3
+            return message.date.slice(firstIndex, lastIndex);
         }
     }
 });
