@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    height: 100vh;
+    background: linear-gradient(0deg, lightgrey 85%, #008068 85%);
+}
