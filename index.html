@@ -33,7 +33,7 @@
                         </div>
 
                         <div id="contacts">
-                            <div class="contact" v-for="(contact, index) in contacts">
+                            <div class="contact" v-for="(contact, index) in contacts" @click="currentIndex = index" :class="{'current' : currentIndex == index}">
                                 <img :src="'img/avatar_' + (index + 1) + '.png'">
                                 <div class="info">
                                     <div class="name">
