@@ -27,7 +27,6 @@ aside {
 
 main {
     width: 65%;
-    background-color: blue;
 }
 
 header {
@@ -65,4 +64,54 @@ header {
 
 .actions i {
     margin-right: 15px;
+}
+
+#chat {
+    height: 90%;
+}
+
+#chat .message {
+    padding: 15px;
+    border-radius: 8px;
+    clear: both;
+    max-width: 30%;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+#chat .message.received {
+    float: left;
+    background-color: white;
+}
+
+#chat .message.sent {
+    float: right;
+    background-color: #91f483;
+}
+
+#chat #messages {
+    height: 90%;
+    padding: 50px 100px;
+    background-image: url('img/chat_bg.png');
+    background-size: contain;
+    overflow-y: scroll;
+}
+
+#chat #send-message {
+    display: flex;
+    align-items: center;
+    height: 10%;
+    background-color: rgb(185, 195, 199);
+    padding: 10px 30px;
+}
+
+#chat #new-message {
+    flex-grow: 1;
+    align-self: stretch;
+    margin: 0 30px;
+}
+
+#chat #new-message input {
+    width: 100%;
+    height: 100%;
 }
