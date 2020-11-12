@@ -11,10 +11,20 @@
 }
 
 #container {
+    display: flex;
     position: absolute;
     top: 3vh;
     left: 10vw;
     height: 94vh;
     width : 80vw;
+}
+
+aside {
+    width: 35%;
     background-color: red;
+}
+
+main {
+    width: 65%;
+    background-color: blue;
 }
