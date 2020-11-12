@@ -5,6 +5,16 @@
 }
 
 #root {
+    position: relative;
     height: 100vh;
     background: linear-gradient(0deg, lightgrey 85%, #008068 85%);
+}
+
+#container {
+    position: absolute;
+    top: 3vh;
+    left: 10vw;
+    height: 94vh;
+    width : 80vw;
+    background-color: red;
 }
