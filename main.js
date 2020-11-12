@@ -2,7 +2,9 @@ var app = new Vue({
     el: '#root',
 
     data: {
-        currentIndex : 0,
+        currentIndex: 0,
+
+        newMessage: '',
 
         contacts: [
             {
@@ -45,7 +47,7 @@ var app = new Vue({
                     {
                         date: '20/03/2020 16:35:00',
                         message: 'Mi piacerebbe ma devo andare a fare la spesa.',
-                        status: 'received'
+                        status: 'sent'
                     }
                 ]
             },
@@ -95,17 +97,12 @@ var app = new Vue({
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
-                        message: 'Hai portato a spasso il cane?',
+                        message: 'Hai comprato il pane?',
                         status: 'sent'
                     },
                     {
                         date: '10/01/2020 15:50:00',
-                        message: 'Ricordati di dargli da mangiare',
-                        status: 'sent'
-                    },
-                    {
-                        date: '10/01/2020 16:15:22',
-                        message: 'Tutto fatto!',
+                        message: 'No, il panettiere era chiuso',
                         status: 'received'
                     }
                 ]
@@ -117,18 +114,18 @@ var app = new Vue({
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
-                        message: 'Hai portato a spasso il cane?',
+                        message: 'Allora che film andiamo a vedere?',
                         status: 'sent'
                     },
                     {
                         date: '10/01/2020 15:50:00',
-                        message: 'Ricordati di dargli da mangiare',
-                        status: 'sent'
+                        message: 'Mi dispiace, non ho più voglia di andare al ciname',
+                        status: 'received'
                     },
                     {
                         date: '10/01/2020 16:15:22',
-                        message: 'Tutto fatto!',
-                        status: 'received'
+                        message: 'Perfetto! Tanto neanche io volevo andarci',
+                        status: 'sent'
                     }
                 ]
             }
@@ -136,6 +133,18 @@ var app = new Vue({
     },
 
     methods: {
+        sendMessage() {
+            if (this.newMessage != '') {
+                let myMessage = {
+                    date: undefined,
+                    message: this.newMessage,
+                    status: 'sent'
+                };
 
+                this.contacts[this.currentIndex].messages.push(myMessage);
+
+                this.newMessage = '';
+            }
+        }
     }
 });
