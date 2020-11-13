@@ -133,7 +133,18 @@ var app = new Vue({
             }
         ],
 
-        showDropdown : undefined
+        showDropdown : undefined,
+
+        answers : [
+            'Non ci sono più le mezze stagioni',
+            'Si stava meglio quando si stava peggio',
+            'Sono sempre i migliori che se ne vanno',
+            'Non si finisce mai di imparare',
+            'Qui una volta era tutta campagna',
+            'Nella vita non si può mai sapere',
+            'Non c’è due senza tre',
+            'Quest’anno è proprio volato'
+        ]
     },
 
     methods: {
@@ -157,7 +168,9 @@ var app = new Vue({
         // the answer will appear after one second
         // moreover, the ansew will be displayed (inside the div with id "messages") to the left and within a white box
         answer() {
-            let receivedMessage = this.getMessageObject('ok', 'received');
+            let rndAnswer = this.answers[this.getRndInteger(0, this.answers.length - 1)];
+
+            let receivedMessage = this.getMessageObject(rndAnswer, 'received');
 
             this.contacts[this.currentIndex].messages.push(receivedMessage);
         },
@@ -196,6 +209,10 @@ var app = new Vue({
             } else {
                 return '';
             }
+        },
+
+        getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) ) + min;
         }
     }
 });
