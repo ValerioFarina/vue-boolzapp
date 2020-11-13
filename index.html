@@ -69,13 +69,24 @@
 
                     <section id="chat">
                         <div id ="messages">
-                            <div v-for="element in contacts[currentIndex].messages" class="message" :class="element.status">
+                            <div v-for="(element, index) in contacts[currentIndex].messages" class="message" :class="element.status">
                                 <div class="text">
                                     {{ element.message }}
                                 </div>
                                 <div class="hour">
                                     {{ getHour(element) }}
                                 </div>
+                                <div class="arrow" @click="showDropdown != index ? showDropdown = index : showDropdown = undefined">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <ul class="dropdown" :class="{'visible' : showDropdown}" v-if="showDropdown == index">
+                                    <li>
+                                        Info messaggio
+                                    </li>
+                                    <li @click="deleteMessage(index)">
+                                        Elimina messaggio
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 

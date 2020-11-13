@@ -131,7 +131,9 @@ var app = new Vue({
                     }
                 ]
             }
-        ]
+        ],
+
+        showDropdown : undefined
     },
 
     methods: {
@@ -172,6 +174,11 @@ var app = new Vue({
             return messageObject;
         },
 
+        deleteMessage(index) {
+            this.contacts[this.currentIndex].messages.splice(index, 1);
+            this.showDropdown = undefined;
+        },
+
         // this function takes as input an object representing a message
         // and returns as output a string corresponding to the hour the message was sent
         // this returned string is a substring of message.date
@@ -182,6 +189,7 @@ var app = new Vue({
         },
 
         capitalize(string) {
+            string = string.trim();
             if (string != '') {
                 return string[0].toUpperCase() + string.slice(1).toLowerCase();
             } else {
