@@ -195,6 +195,7 @@ header .avatar {
 }
 
 .contact {
+    display: flex;
     height: 9vh;
     padding: 8px 16px;
     border-top: 1px solid black;
@@ -205,6 +206,12 @@ header .avatar {
     background-color: #8080806e;
 }
 
-.current {
+.contact.current {
     background-color: #8080806e;
+}
+
+.contact .hour {
+    flex-grow: 1;
+    text-align: right;
+    font-size: 12px;
 }
