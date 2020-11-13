@@ -30,11 +30,11 @@
                                 <i class="fas fa-search"></i>
                             </button>
 
-                            <input placeholder="Cerca un contatto">
+                            <input placeholder="Cerca un contatto" v-model="contactSearched">
                         </div>
 
                         <div id="contacts">
-                            <div class="contact" v-for="(contact, index) in contacts" @click="currentIndex = index" :class="{'current' : currentIndex == index}">
+                            <div class="contact" v-for="(contact, index) in contacts" @click="currentIndex = index" :class="{'current' : currentIndex == index}" v-if="contact.name.startsWith(capitalize(contactSearched))">
                                 <img :src="'img/avatar_' + (index + 1) + '.png'">
                                 <div class="info">
                                     <div class="name">

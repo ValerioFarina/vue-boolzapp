@@ -6,9 +6,11 @@ var app = new Vue({
 
         newMessage: '',
 
+        contactSearched : '',
+
         contacts: [
             {
-                name: 'Michele',
+                name: 'Marco',
                 avatar: '_1',
                 visible: true,
                 messages: [
@@ -74,7 +76,7 @@ var app = new Vue({
                 ]
             },
             {
-                name: 'Luisa',
+                name: 'Martina',
                 avatar: '_4',
                 visible: true,
                 messages: [
@@ -140,13 +142,6 @@ var app = new Vue({
             this.newMessage = this.newMessage.trim();
             if (this.newMessage != '') {
                 let myMessage = this.getMessageObject(this.newMessage, 'sent');
-                // let day = moment().format('L');
-                // let hour = moment().format('LTS').substring(0, moment().format('LTS').length - 3);
-                // let myMessage = {
-                //     date: day + ' ' + hour,
-                //     message: this.newMessage,
-                //     status: 'sent'
-                // };
 
                 this.contacts[this.currentIndex].messages.push(myMessage);
 
@@ -156,12 +151,16 @@ var app = new Vue({
             }
         },
 
+        // this function simulates an answer to the message sent by the user
+        // the answer will appear after one second
+        // moreover, the ansew will be displayed (inside the div with id "messages") to the left and within a white box
         answer() {
             let receivedMessage = this.getMessageObject('ok', 'received');
 
             this.contacts[this.currentIndex].messages.push(receivedMessage);
         },
 
+        // this function creates a new object representing a new message
         getMessageObject(messageText, status) {
             let day = moment().format('L');
             let hour = moment().format('LTS').substring(0, moment().format('LTS').length - 3);
@@ -180,6 +179,14 @@ var app = new Vue({
             let firstIndex = message.date.indexOf(' ') + 1;
             let lastIndex = message.date.length - 3
             return message.date.slice(firstIndex, lastIndex);
+        },
+
+        capitalize(string) {
+            if (string != '') {
+                return string[0].toUpperCase() + string.slice(1).toLowerCase();
+            } else {
+                return '';
+            }
         }
     }
 });
