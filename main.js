@@ -119,7 +119,7 @@ var app = new Vue({
                     },
                     {
                         date: '10/01/2020 15:50:00',
-                        message: 'Mi dispiace, non ho più voglia di andare al ciname',
+                        message: 'Mi dispiace, non ho più voglia di andare al cinema',
                         status: 'received'
                     },
                     {
@@ -137,17 +137,40 @@ var app = new Vue({
         // the message will appear (inside the div with id "messages") to the right and within a green box
         // the message will not be sent if it is an empty string
         sendMessage() {
+            this.newMessage = this.newMessage.trim();
             if (this.newMessage != '') {
-                let myMessage = {
-                    date: '',
-                    message: this.newMessage,
-                    status: 'sent'
-                };
+                let myMessage = this.getMessageObject(this.newMessage, 'sent');
+                // let day = moment().format('L');
+                // let hour = moment().format('LTS').substring(0, moment().format('LTS').length - 3);
+                // let myMessage = {
+                //     date: day + ' ' + hour,
+                //     message: this.newMessage,
+                //     status: 'sent'
+                // };
 
                 this.contacts[this.currentIndex].messages.push(myMessage);
 
                 this.newMessage = '';
+
+                setTimeout(this.answer, 1000);
             }
+        },
+
+        answer() {
+            let receivedMessage = this.getMessageObject('ok', 'received');
+
+            this.contacts[this.currentIndex].messages.push(receivedMessage);
+        },
+
+        getMessageObject(messageText, status) {
+            let day = moment().format('L');
+            let hour = moment().format('LTS').substring(0, moment().format('LTS').length - 3);
+            let messageObject = {
+                date: day + ' ' + hour,
+                message: messageText,
+                status: status
+            };
+            return messageObject;
         },
 
         // this function takes as input an object representing a message
