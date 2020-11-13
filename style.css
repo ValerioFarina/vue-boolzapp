@@ -10,15 +10,15 @@ body {
 }
 
 input {
-    outline: none;
-    border-radius: 5px;
     border: 0;
+    border-radius: 5px;
+    outline: none;
 }
 
 button {
-    background-color: white;
-    border-radius: 5px;
     border: 0;
+    border-radius: 5px;
+    background-color: white;
     color: grey;
     cursor: pointer;
 }
@@ -40,13 +40,8 @@ i {
     left: 10vw;
     height: 94vh;
     width : 80vw;
-    box-shadow: 0 10px 20px -5px rgba(91, 91, 91, 1);
     min-width: 700px;
-}
-
-.avatar,
-.contact {
-    display: flex;
+    box-shadow: 0 10px 20px -5px rgba(91, 91, 91, 1);
 }
 
 aside {
@@ -62,6 +57,15 @@ header {
     height: 10%;
     padding: 8px;
     background-color: #e8e8e8;
+}
+
+aside header {
+    border-right: 1px solid rgb(182, 182, 182);
+}
+
+.avatar,
+.contact {
+    display: flex;
 }
 
 header .avatar {
@@ -83,19 +87,15 @@ header .avatar {
 }
 
 .actions {
-    height: 100%;
-    float: right;
     display: flex;
     align-items: center;
+    float: right;
+    height: 100%;
     font-size: 18px;
 }
 
 .actions i {
     margin-right: 15px;
-}
-
-aside header {
-    border-right: 1px solid rgb(182, 182, 182);
 }
 
 .info .name,
@@ -105,140 +105,36 @@ aside header {
     font-size: 15px;
 }
 
-#chat {
-    height: 90%;
-}
-
-#chat .message {
-    position: relative;
-    padding: 20px 25px;
-    border-radius: 8px;
-    clear: both;
-    max-width: 40%;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-#chat .message.received {
-    float: left;
-    background-color: white;
-}
-
-#chat .message.sent {
-    float: right;
-    background-color: #91f483;
-}
-
-#chat .message .hour {
-    font-size: 8px;
-    position: absolute;
-    bottom: 5px;
-    right: 3px;
-}
-
-#chat .message:hover .hour{
-    display: none;
-}
-
-#chat .message .arrow {
-    display: none;
-    font-weight: 900;
-    padding: 5px 0;
-    position: absolute;
-    right: 3px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-#chat .message:hover .arrow {
-    display: block;
-}
-
-#chat .message .dropdown {
-    position: absolute;
-    right: 0;
-    top: 70%;
-    background-color: white;
-    list-style-type: none;
-    width: 130px;
-    font-weight: normal;
-    z-index: 1;
-    box-shadow: 0 10px 30px -5px rgba(91, 91, 91, 1);
-    border-radius: 8px;
-}
-
-#chat .message .dropdown li {
-    padding: 10px;
-    cursor: pointer;
-}
-
-#chat .message .dropdown li:hover {
-    background-color: rgba(162, 179, 207, 0.29);
-}
-
-#chat #messages {
-    height: 90%;
-    padding: 50px 100px;
-    background-image: url('img/chat_bg.png');
-    background-size: contain;
-    overflow-y: scroll;
-}
-
-#chat #send-message {
-    display: flex;
-    align-items: center;
-    height: 10%;
-    background-color: #e8e8e8;
-    padding: 10px 30px;
-}
-
-#chat #new-message {
-    flex-grow: 1;
-    align-self: stretch;
-    margin: 0 30px;
-}
-
-#chat #new-message input {
-    width: 100%;
-    height: 100%;
-}
-
-#send-message .icon,
-#send-message .icon {
-    font-size: 18px;
-}
-
 #search-contacts {
-    background-color: white;
     height: 90%;
+    background-color: white;
 }
 
 #notifications {
+    display: flex;
+    align-items: center;
     height: 60px;
     padding: 8px 16px;
     background-color: #019bca69;
-    display: flex;
-    align-items: center;
 }
 
 #notifications .icon {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #019bca69;
-    font-size: 20px;
+    height: 40px;
+    width: 40px;
     margin-right: 10px;
+    border-radius: 50%;
+    font-size: 20px;
+    background-color: white;
+    color: #019bca69;
 }
 
 #search-bar {
+    display: flex;
     height: 45px;
     padding: 8px;
-    display: flex;
     background-color: #e8e8e8;
 }
 
@@ -247,14 +143,14 @@ aside header {
 }
 
 #search-bar button {
-    margin-right: 5px;
     width: 45px;
+    margin-right: 5px;
     line-height: 100%;
 }
 
 #contacts {
-    overflow-y: scroll;
     height: calc(100% - 105px);
+    overflow-y: scroll;
 }
 
 .contact {
@@ -277,4 +173,108 @@ aside header {
     flex-grow: 1;
     text-align: right;
     font-size: 12px;
+}
+
+#chat {
+    height: 90%;
+}
+
+#chat #messages {
+    height: 90%;
+    padding: 50px 100px;
+    background-image: url('img/chat_bg.png');
+    background-size: contain;
+    overflow-y: scroll;
+}
+
+#chat .message {
+    position: relative;
+    clear: both;
+    padding: 20px 25px;
+    margin-bottom: 10px;
+    max-width: 40%;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#chat .message.received {
+    float: left;
+    background-color: white;
+}
+
+#chat .message.sent {
+    float: right;
+    background-color: #91f483;
+}
+
+#chat .message .hour {
+    position: absolute;
+    right: 3px;
+    bottom: 5px;
+    font-size: 8px;
+}
+
+#chat .message:hover .hour{
+    display: none;
+}
+
+#chat .message .arrow {
+    display: none;
+    position: absolute;
+    right: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 5px 0;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+#chat .message:hover .arrow {
+    display: block;
+}
+
+#chat .message .dropdown {
+    position: absolute;
+    right: 0;
+    top: 70%;
+    width: 130px;
+    z-index: 1;
+    border-radius: 8px;
+    list-style-type: none;
+    background-color: white;
+    font-weight: normal;
+    box-shadow: 0 10px 30px -5px rgba(91, 91, 91, 1);
+}
+
+#chat .message .dropdown li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#chat .message .dropdown li:hover {
+    background-color: rgba(162, 179, 207, 0.29);
+}
+
+#chat #send-message {
+    display: flex;
+    align-items: center;
+    height: 10%;
+    padding: 10px 30px;
+    background-color: #e8e8e8;
+}
+
+#chat #new-message {
+    flex-grow: 1;
+    align-self: stretch;
+    margin: 0 30px;
+}
+
+#chat #new-message input {
+    width: 100%;
+    height: 100%;
+}
+
+#send-message .icon,
+#send-message .icon {
+    font-size: 18px;
 }

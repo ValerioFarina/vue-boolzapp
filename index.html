@@ -29,6 +29,7 @@
                             <div class="icon">
                                 <i class="fas fa-bell-slash"></i>
                             </div>
+
                             <div class="text">
                                 <div class="top">
                                     Ricevi notifiche di nuovi messaggi
@@ -43,7 +44,6 @@
                             <button>
                                 <i class="fas fa-search"></i>
                             </button>
-
                             <input placeholder="Cerca un contatto" v-model="contactSearched">
                         </div>
 
@@ -55,7 +55,7 @@
                                         {{ contact.name }}
                                     </div>
                                     <div class="last-message">
-                                        {{ contact.messages[contact.messages.length - 1].message }}
+                                        {{ getTextOfMessage(contact.messages[contact.messages.length - 1]) }}
                                     </div>
                                 </div>
                                 <div class="hour">
@@ -74,8 +74,8 @@
                                 <div class="name">
                                     {{ contacts[currentIndex].name }}
                                 </div>
-                                <div class="last-update">
-                                    Ultimo aggiornamento alle {{ getHour(contacts[currentIndex].messages[contacts[currentIndex].messages.length - 1]) }}
+                                <div class="last-access">
+                                    Ultimo accesso oggi alle 15:40
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                         <div id ="messages">
                             <div v-for="(element, index) in contacts[currentIndex].messages" class="message" :class="element.status">
                                 <div class="text">
-                                    {{ element.message }}
+                                    {{ getTextOfMessage(element) }}
                                 </div>
                                 <div class="hour">
                                     {{ getHour(element) }}

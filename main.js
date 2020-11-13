@@ -8,6 +8,8 @@ var app = new Vue({
 
         contactSearched : '',
 
+        showDropdown : undefined,
+
         contacts: [
             {
                 name: 'Marco',
@@ -167,8 +169,6 @@ var app = new Vue({
             }
         ],
 
-        showDropdown : undefined,
-
         answers : [
             'Non ci sono più le mezze stagioni',
             'Si stava meglio quando si stava peggio',
@@ -222,18 +222,28 @@ var app = new Vue({
             return messageObject;
         },
 
+        // this function deletes the message selected by the user
         deleteMessage(index) {
             this.contacts[this.currentIndex].messages.splice(index, 1);
             this.showDropdown = undefined;
+        },
+
+        // this function takes as input an object representing a message and returns a string corresponding to the text of the message
+        getTextOfMessage(messageObject) {
+            if (messageObject != undefined) {
+                return messageObject.message;
+            }
         },
 
         // this function takes as input an object representing a message
         // and returns as output a string corresponding to the hour the message was sent
         // this returned string is a substring of message.date
         getHour(message) {
-            let firstIndex = message.date.indexOf(' ') + 1;
-            let lastIndex = message.date.length - 3;
-            return message.date.slice(firstIndex, lastIndex);
+            if (message != undefined) {
+                let firstIndex = message.date.indexOf(' ') + 1;
+                let lastIndex = message.date.length - 3;
+                return message.date.slice(firstIndex, lastIndex);
+            }
         },
 
         capitalize(string) {
