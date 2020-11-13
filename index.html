@@ -25,6 +25,20 @@
                     </header>
 
                     <section id="search-contacts">
+                        <div id="notifications">
+                            <div class="icon">
+                                <i class="fas fa-bell-slash"></i>
+                            </div>
+                            <div class="text">
+                                <div class="top">
+                                    Ricevi notifiche di nuovi messaggi
+                                </div>
+                                <div class="bottom">
+                                    <a href="#">Attiva notifiche desktop</a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div id="search-bar">
                             <button>
                                 <i class="fas fa-search"></i>
@@ -61,7 +75,7 @@
                                     {{ contacts[currentIndex].name }}
                                 </div>
                                 <div class="last-update">
-                                    Ultimo aggiornamento oggi alle 15.40
+                                    Ultimo aggiornamento alle {{ getHour(contacts[currentIndex].messages[contacts[currentIndex].messages.length - 1]) }}
                                 </div>
                             </div>
                         </div>

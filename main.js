@@ -130,6 +130,40 @@ var app = new Vue({
                         status: 'sent'
                     }
                 ]
+            },
+            {
+                name: 'Antonio',
+                avatar: '_7',
+                visible: true,
+                messages: [
+                    {
+                        date: '15/02/2020 16:32:55',
+                        message: 'Buon compleanno Antonio',
+                        status: 'sent'
+                    },
+                    {
+                        date: '15/02/2020 17:50:00',
+                        message: 'Grazie!!!',
+                        status: 'received'
+                    }
+                ]
+            },
+            {
+                name: 'Luca',
+                avatar: '_8',
+                visible: true,
+                messages: [
+                    {
+                        date: '15/02/2020 7:12:03',
+                        message: 'Mi presti la macchina?',
+                        status: 'received'
+                    },
+                    {
+                        date: '15/02/2020 8:10:22',
+                        message: 'No',
+                        status: 'sent'
+                    }
+                ]
             }
         ],
 
