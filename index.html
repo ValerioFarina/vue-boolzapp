@@ -11,10 +11,16 @@
     <body>
         <div id="root">
             <div id="container">
+                <!-- beginning of the panel's left part -->
                 <aside>
                     <header>
                         <div class="avatar">
                             <img src="img/my_avatar.png">
+                            <div class="info">
+                                <div class="name">
+                                    {{ me.name }}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="actions">
@@ -65,7 +71,9 @@
                         </div>
                     </section>
                 </aside>
+                <!-- end of the panel's left part -->
 
+                <!-- beginning of the panel's right part -->
                 <main>
                     <header>
                         <div class="avatar">
@@ -89,18 +97,18 @@
 
                     <section id="chat">
                         <div id ="messages">
-                            <div class="message-container" v-for="(element, index) in contacts[currentIndex].messages">
-                                <div class="day" v-if="getDayOf(element) != getDayOf(contacts[currentIndex].messages[index-1])">
+                            <div class="message-container" v-for="(messageObject, index) in contacts[currentIndex].messages">
+                                <div class="day" v-if="getDayOf(messageObject) != getDayOf(contacts[currentIndex].messages[index-1])">
                                     <span>
-                                        {{ getDayOf(element) }}
+                                        {{ getDayOf(messageObject) }}
                                     </span>
                                 </div>
-                                <div class="message" :class="element.status">
+                                <div class="message" :class="messageObject.status">
                                     <div class="text">
-                                        {{ getTextOf(element) }}
+                                        {{ getTextOf(messageObject) }}
                                     </div>
                                     <div class="hour">
-                                        {{ getHourOf(element) }}
+                                        {{ getHourOf(messageObject) }}
                                     </div>
                                     <div class="arrow" @click="showDropdown != index ? showDropdown = index : showDropdown = undefined">
                                         <i class="fas fa-chevron-down"></i>
@@ -126,11 +134,12 @@
                             </div>
                             <div class="icon" @click="sendMessage">
                                 <i class="fas fa-microphone" v-if="!isWriting"></i>
-                                <i class="fas fa-play" v-if="isWriting"></i>
+                                <i class="fas fa-play send" v-if="isWriting"></i>
                             </div>
                         </div>
                     </section>
                 </main>
+                <!-- end of the panel's right part -->
             </div>
 
             <div id="confirm-deletion" v-if="showDeletionWindow">

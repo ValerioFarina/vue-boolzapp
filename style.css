@@ -201,11 +201,10 @@ header .avatar {
 }
 
 #chat .message-container .day span {
-    background-color: #e8e8e8;
-    border-radius: 10px;
     padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #e8e8e8;
 }
-
 
 #chat .message {
     position: relative;
@@ -294,10 +293,13 @@ header .avatar {
     height: 100%;
 }
 
-#send-message .icon,
 #send-message .icon {
-    font-size: 18px;
     max-width: 12px;
+    font-size: 20px;
+}
+
+#send-message .icon .send:hover {
+    color: #00a486;
 }
 
 #confirm-deletion {
@@ -314,12 +316,12 @@ header .avatar {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #8fa2a6;
     padding: 30px;
-    color: black;
-    font-size: 20px;
-    z-index: 2;
     border-radius: 10px;
+    z-index: 2;
+    font-size: 20px;
+    background-color: #8fa2a6;
+    color: black;
 }
 
 #confirm-deletion .answer {
@@ -328,8 +330,8 @@ header .avatar {
 }
 
 #confirm-deletion button {
-    padding: 10px;
     width: 50px;
+    padding: 10px;
 }
 
 #confirm-deletion button:first-child {

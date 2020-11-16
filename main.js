@@ -16,6 +16,8 @@ var app = new Vue({
 
         messageClicked : undefined,
 
+        me : {name : 'Valerio'},
+
         contacts: [
             {
                 name: 'Marco',
@@ -192,17 +194,24 @@ var app = new Vue({
         // the message will appear (inside the div with id "messages") to the right and within a green box
         // the message will not be sent if it is an empty string
         sendMessage() {
+            // we remove whitespaces from both sides of the string newMessage
             this.newMessage = this.newMessage.trim();
             if (this.newMessage != '') {
+                // if the result is not an empty string, we create a new object representing a new message, and we svae it in the variable myMessage
                 let myMessage = this.getMessageObject(this.newMessage, 'sent');
 
+                // we add this new message to the currently displayed conversation
                 this.contacts[this.currentIndex].messages.push(myMessage);
 
+                // after the new message is added to the messages panel, the panel automatically scrolls to the end
+                setTimeout(this.scrollMessages, 1);
+
+                // we reset the value of newMessage (i.e. the value of the input placed inside the div with id "send-message")
                 this.newMessage = '';
 
+                // we automatically generate an answer
+                // this answer will be displayed in the messages panel after 1 second
                 setTimeout(this.answer, 1000);
-
-                setTimeout(this.scrollMessages, 1);
             }
         },
 
@@ -210,16 +219,23 @@ var app = new Vue({
         // the answer will appear after one second
         // moreover, the ansew will be displayed (inside the div with id "messages") to the left and within a white box
         answer() {
+            // we pick from the array answers a random element which will be the text of our random answer
             let rndAnswer = this.answers[this.getRndInteger(0, this.answers.length - 1)];
 
+            // we generate a new object representing the randomly generated answer
             let receivedMessage = this.getMessageObject(rndAnswer, 'received');
 
+            // we add this randomly generated answer to the currently displayed conversation
             this.contacts[this.currentIndex].messages.push(receivedMessage);
 
+            // after the answer is added to the messages panel, the panel automatically scrolls to the end
             setTimeout(this.scrollMessages, 1);
         },
 
         // this function creates a new object representing a new message
+        // the first argument of the function will be the text of the message
+        // the second argument should be either the string 'received' or the string 'sent'
+        // the message object returned by the function will contain a property date, whose value will be a string representing the day and hour the new message has been sent
         getMessageObject(messageText, status) {
             let day = moment().format('L');
 
@@ -237,7 +253,6 @@ var app = new Vue({
         // this function deletes the message selected by the user
         deleteMessage(index) {
             this.contacts[this.currentIndex].messages.splice(index, 1);
-            this.showDropdown = undefined;
         },
 
         // this function takes as input an object representing a message and returns a string corresponding to the text of the message
@@ -249,16 +264,18 @@ var app = new Vue({
 
         // this function takes as input an object representing a message
         // and returns as output a string corresponding to the hour the message was sent
-        // this returned string is a substring of message.date
-        getHourOf(message) {
-            if (message != undefined) {
-                return moment(message.date, 'DD/MM/YY hh:mm:ss').format('LT');
+        getHourOf(messageObject) {
+            if (messageObject != undefined) {
+                return moment(messageObject.date, 'DD/MM/YY hh:mm:ss').format('LT');
             }
         },
 
-        getDayOf(message) {
-            if (message != undefined) {
-                let day = moment(message.date, 'DD/MM/YY hh:mm:ss').format('L');
+        // this function takes as input an object representing a message
+        // and returns as output a string corresponding to the day the message was sent
+        // unless the day is today, in which case we return the string 'OGGI'
+        getDayOf(messageObject) {
+            if (messageObject != undefined) {
+                let day = moment(messageObject.date, 'DD/MM/YY hh:mm:ss').format('L');
                 if (day == moment().format('L')) {
                     return 'OGGI';
                 } else {
@@ -267,22 +284,28 @@ var app = new Vue({
             }
         },
 
+        // this function checks if the name of a given contact matches the contact searched by the user
+        // the comparison is not case sensitive
         matched(contact, contactSearched) {
             return contact.name.startsWith(this.capitalize(contactSearched));
         },
 
+        // this function takes as input an object representing a contact
+        // and returns as output an object corresponding to the last message this contact has sent to/has received from the user
         lastMessage(contact) {
             if (contact.messages.length != 0) {
                 return contact.messages[contact.messages.length - 1];
             }
         },
 
+        // this function scrolls to the end of the messages panel
         scrollMessages() {
             let containerMessages = document.getElementById("messages");
 
             containerMessages.scrollTop = containerMessages.scrollHeight;
         },
 
+        // this function makes the first letter of a given string uppercase
         capitalize(string) {
             string = string.trim();
             if (string != '') {
@@ -292,6 +315,7 @@ var app = new Vue({
             }
         },
 
+        // this function generates a random integer
         getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1) ) + min;
         }
@@ -300,6 +324,5 @@ var app = new Vue({
 
     created : function() {
         moment.locale('it');
-        console.log('16/11/2020' == moment().format('L'));
     }
 });
