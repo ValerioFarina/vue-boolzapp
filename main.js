@@ -195,6 +195,8 @@ var app = new Vue({
                 this.newMessage = '';
 
                 setTimeout(this.answer, 1000);
+
+                this.scrollMessages();
             }
         },
 
@@ -207,6 +209,8 @@ var app = new Vue({
             let receivedMessage = this.getMessageObject(rndAnswer, 'received');
 
             this.contacts[this.currentIndex].messages.push(receivedMessage);
+
+            this.scrollMessages();
         },
 
         // this function creates a new object representing a new message
@@ -229,7 +233,7 @@ var app = new Vue({
         },
 
         // this function takes as input an object representing a message and returns a string corresponding to the text of the message
-        getTextOfMessage(messageObject) {
+        getTextOf(messageObject) {
             if (messageObject != undefined) {
                 return messageObject.message;
             }
@@ -238,12 +242,28 @@ var app = new Vue({
         // this function takes as input an object representing a message
         // and returns as output a string corresponding to the hour the message was sent
         // this returned string is a substring of message.date
-        getHour(message) {
+        getHourOf(message) {
             if (message != undefined) {
                 let firstIndex = message.date.indexOf(' ') + 1;
                 let lastIndex = message.date.length - 3;
                 return message.date.slice(firstIndex, lastIndex);
             }
+        },
+
+        matched(contact, contactSearched) {
+            return contact.name.startsWith(this.capitalize(contactSearched));
+        },
+
+        lastMessage(contact) {
+            if (contact.messages.length != 0) {
+                return contact.messages[contact.messages.length - 1];
+            }
+        },
+
+        scrollMessages() {
+            let containerMessages = document.getElementById("messages");
+
+            containerMessages.scrollTop = containerMessages.scrollHeight;
         },
 
         capitalize(string) {
@@ -258,5 +278,6 @@ var app = new Vue({
         getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1) ) + min;
         }
+
     }
 });

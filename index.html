@@ -48,18 +48,18 @@
                         </div>
 
                         <div id="contacts">
-                            <div class="contact" v-for="(contact, index) in contacts" @click="currentIndex = index" :class="{'current' : currentIndex == index}" v-if="contact.name.startsWith(capitalize(contactSearched))">
+                            <div class="contact" v-for="(contact, index) in contacts" @click="currentIndex = index" :class="{'current' : currentIndex == index}" v-if="matched(contact, contactSearched)">
                                 <img :src="'img/avatar_' + (index + 1) + '.png'">
                                 <div class="info">
                                     <div class="name">
                                         {{ contact.name }}
                                     </div>
                                     <div class="last-message">
-                                        {{ getTextOfMessage(contact.messages[contact.messages.length - 1]) }}
+                                        {{ getTextOf(lastMessage(contact)) }}
                                     </div>
                                 </div>
                                 <div class="hour">
-                                    {{ getHour(contact.messages[contact.messages.length - 1]) }}
+                                    {{ getHourOf(lastMessage(contact)) }}
                                 </div>
                             </div>
                         </div>
@@ -91,10 +91,10 @@
                         <div id ="messages">
                             <div v-for="(element, index) in contacts[currentIndex].messages" class="message" :class="element.status">
                                 <div class="text">
-                                    {{ getTextOfMessage(element) }}
+                                    {{ getTextOf(element) }}
                                 </div>
                                 <div class="hour">
-                                    {{ getHour(element) }}
+                                    {{ getHourOf(element) }}
                                 </div>
                                 <div class="arrow" @click="showDropdown != index ? showDropdown = index : showDropdown = undefined">
                                     <i class="fas fa-chevron-down"></i>
