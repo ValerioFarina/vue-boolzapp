@@ -277,4 +277,5 @@ header .avatar {
 #send-message .icon,
 #send-message .icon {
     font-size: 18px;
+    max-width: 12px;
 }

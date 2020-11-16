@@ -115,10 +115,11 @@
                                 <i class="far fa-smile"></i>
                             </div>
                             <div id="new-message">
-                                <input placeholder="Scrivi un messaggio" v-model="newMessage" @keypress.enter="sendMessage">
+                                <input placeholder="Scrivi un messaggio" v-model="newMessage" @focus="isWriting = true" @blur="isWriting = false" @keypress.enter="sendMessage">
                             </div>
-                            <div class="icon">
-                                <i class="fas fa-microphone"></i>
+                            <div class="icon" @click="sendMessage">
+                                <i class="fas fa-microphone" v-if="!isWriting"></i>
+                                <i class="fas fa-play" v-if="isWriting"></i>
                             </div>
                         </div>
                     </section>

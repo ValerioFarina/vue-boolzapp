@@ -10,6 +10,8 @@ var app = new Vue({
 
         showDropdown : undefined,
 
+        isWriting : false,
+
         contacts: [
             {
                 name: 'Marco',
@@ -216,13 +218,17 @@ var app = new Vue({
         // this function creates a new object representing a new message
         getMessageObject(messageText, status) {
             moment.locale('it');
+
             let day = moment().format('L');
+
             let hour = moment().format('LTS');
+
             let messageObject = {
                 date: day + ' ' + hour,
                 message: messageText,
                 status: status
             };
+
             return messageObject;
         },
 
