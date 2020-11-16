@@ -54,7 +54,7 @@ main {
 }
 
 header {
-    height: 10%;
+    height: 68px;
     padding: 8px;
     background-color: #e8e8e8;
 }
@@ -106,7 +106,7 @@ header .avatar {
 }
 
 #search-contacts {
-    height: 90%;
+    height: calc(100% - 68px);
     background-color: white;
 }
 
@@ -155,7 +155,7 @@ header .avatar {
 
 .contact {
     display: flex;
-    height: 9vh;
+    height: 65px;
     padding: 8px 16px;
     border-top: 1px solid rgba(171, 171, 171, 0.2);
     cursor: pointer;
@@ -176,16 +176,39 @@ header .avatar {
 }
 
 #chat {
-    height: 90%;
+    height: calc(100% - 68px);
 }
 
 #chat #messages {
-    height: 90%;
-    padding: 50px 100px;
+    height: calc(100% - 55px);
+    padding: 50px 100px 60px 100px;
     background-image: url('img/chat_bg.png');
     background-size: contain;
     overflow-y: scroll;
 }
+
+#chat .message-container {
+    text-align: center;
+}
+
+#chat .message-container::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+#chat .message-container .day {
+    margin: 20px 0;
+    font-size: 16px;
+    color: black;
+}
+
+#chat .message-container .day span {
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
 
 #chat .message {
     position: relative;
@@ -258,7 +281,7 @@ header .avatar {
 #chat #send-message {
     display: flex;
     align-items: center;
-    height: 10%;
+    height: 55px;
     padding: 10px 30px;
     background-color: #e8e8e8;
 }

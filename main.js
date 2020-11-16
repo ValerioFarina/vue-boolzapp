@@ -198,7 +198,7 @@ var app = new Vue({
 
                 setTimeout(this.answer, 1000);
 
-                this.scrollMessages();
+                setTimeout(this.scrollMessages, 1);
             }
         },
 
@@ -212,7 +212,7 @@ var app = new Vue({
 
             this.contacts[this.currentIndex].messages.push(receivedMessage);
 
-            this.scrollMessages();
+            setTimeout(this.scrollMessages, 1);
         },
 
         // this function creates a new object representing a new message
@@ -253,6 +253,13 @@ var app = new Vue({
                 let firstIndex = message.date.indexOf(' ') + 1;
                 let lastIndex = message.date.length - 3;
                 return message.date.slice(firstIndex, lastIndex);
+            }
+        },
+
+        getDayOf(message) {
+            if (message != undefined) {
+                let lastIndex = message.date.indexOf(' ');
+                return message.date.slice(0, lastIndex);
             }
         },
 

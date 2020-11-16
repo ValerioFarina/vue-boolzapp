@@ -89,24 +89,31 @@
 
                     <section id="chat">
                         <div id ="messages">
-                            <div v-for="(element, index) in contacts[currentIndex].messages" class="message" :class="element.status">
-                                <div class="text">
-                                    {{ getTextOf(element) }}
+                            <div class="message-container" v-for="(element, index) in contacts[currentIndex].messages">
+                                <div class="day" v-if="getDayOf(element) != getDayOf(contacts[currentIndex].messages[index-1])">
+                                    <span>
+                                        {{ getDayOf(element) }}
+                                    </span>
                                 </div>
-                                <div class="hour">
-                                    {{ getHourOf(element) }}
+                                <div class="message" :class="element.status">
+                                    <div class="text">
+                                        {{ getTextOf(element) }}
+                                    </div>
+                                    <div class="hour">
+                                        {{ getHourOf(element) }}
+                                    </div>
+                                    <div class="arrow" @click="showDropdown != index ? showDropdown = index : showDropdown = undefined">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <ul class="dropdown" :class="{'visible' : showDropdown}" v-if="showDropdown == index">
+                                        <li>
+                                            Info messaggio
+                                        </li>
+                                        <li @click="deleteMessage(index)">
+                                            Elimina messaggio
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="arrow" @click="showDropdown != index ? showDropdown = index : showDropdown = undefined">
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                                <ul class="dropdown" :class="{'visible' : showDropdown}" v-if="showDropdown == index">
-                                    <li>
-                                        Info messaggio
-                                    </li>
-                                    <li @click="deleteMessage(index)">
-                                        Elimina messaggio
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
