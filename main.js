@@ -12,6 +12,10 @@ var app = new Vue({
 
         isWriting : false,
 
+        showDeletionWindow : false,
+
+        messageClicked : undefined,
+
         contacts: [
             {
                 name: 'Marco',

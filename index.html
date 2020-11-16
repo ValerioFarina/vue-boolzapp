@@ -105,11 +105,11 @@
                                     <div class="arrow" @click="showDropdown != index ? showDropdown = index : showDropdown = undefined">
                                         <i class="fas fa-chevron-down"></i>
                                     </div>
-                                    <ul class="dropdown" :class="{'visible' : showDropdown}" v-if="showDropdown == index">
+                                    <ul class="dropdown" v-if="showDropdown == index">
                                         <li>
                                             Info messaggio
                                         </li>
-                                        <li @click="deleteMessage(index)">
+                                        <li @click="messageClicked = index; showDeletionWindow = true; showDropdown = undefined">
                                             Elimina messaggio
                                         </li>
                                     </ul>
@@ -131,6 +131,18 @@
                         </div>
                     </section>
                 </main>
+            </div>
+
+            <div id="confirm-deletion" v-if="showDeletionWindow">
+                <div class="window">
+                    <div class="question">
+                        Sei sicuro di voler eliminare il messaggio?
+                    </div>
+                    <div class="answer">
+                        <button @click="deleteMessage(messageClicked); showDeletionWindow = false">Sì</button>
+                        <button @click="showDeletionWindow = false">No</button>
+                    </div>
+                </div>
             </div>
         </div>
 
