@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="hour">
-                                    {{ getHourOf(lastMessage(contact)) }}
+                                    {{ getDayOf(lastMessage(contact)) == 'OGGI' ? getHourOf(lastMessage(contact)) : getDayOf(lastMessage(contact)) }}
                                 </div>
                             </div>
                         </div>

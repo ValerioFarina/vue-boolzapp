@@ -187,10 +187,6 @@ header .avatar {
     overflow-y: scroll;
 }
 
-#chat .message-container {
-    text-align: center;
-}
-
 #chat .message-container::after {
     content: '';
     display: table;
@@ -201,6 +197,7 @@ header .avatar {
     margin: 20px 0;
     font-size: 16px;
     color: black;
+    text-align: center;
 }
 
 #chat .message-container .day span {

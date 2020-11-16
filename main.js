@@ -217,8 +217,6 @@ var app = new Vue({
 
         // this function creates a new object representing a new message
         getMessageObject(messageText, status) {
-            moment.locale('it');
-
             let day = moment().format('L');
 
             let hour = moment().format('LTS');
@@ -250,16 +248,18 @@ var app = new Vue({
         // this returned string is a substring of message.date
         getHourOf(message) {
             if (message != undefined) {
-                let firstIndex = message.date.indexOf(' ') + 1;
-                let lastIndex = message.date.length - 3;
-                return message.date.slice(firstIndex, lastIndex);
+                return moment(message.date, 'DD/MM/YY hh:mm:ss').format('LT');
             }
         },
 
         getDayOf(message) {
             if (message != undefined) {
-                let lastIndex = message.date.indexOf(' ');
-                return message.date.slice(0, lastIndex);
+                let day = moment(message.date, 'DD/MM/YY hh:mm:ss').format('L');
+                if (day == moment().format('L')) {
+                    return 'OGGI';
+                } else {
+                    return day == moment().format('L') ? 'OGGI' : day;
+                }
             }
         },
 
@@ -292,5 +292,10 @@ var app = new Vue({
             return Math.floor(Math.random() * (max - min + 1) ) + min;
         }
 
+    },
+
+    created : function() {
+        moment.locale('it');
+        console.log('16/11/2020' == moment().format('L'));
     }
 });
