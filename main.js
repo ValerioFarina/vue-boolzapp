@@ -16,7 +16,12 @@ var app = new Vue({
 
         messageClicked : undefined,
 
-        me : {name : 'Valerio'},
+        showResetButton : false,
+
+        user : {
+            name : 'Valerio',
+            avatar : '_user'
+        },
 
         contacts: [
             {
@@ -282,9 +287,10 @@ var app = new Vue({
 
         // this function checks if the name of a given contact matches the contact searched by the user
         // the comparison is not case sensitive
-        matched(contact, contactSearched) {
-            contactSearched = contactSearched.toLowerCase();
-            return contact.name.toLowerCase().includes(contactSearched) ? true : false;
+        matchTheSearch(contact) {
+            let searched = this.contactSearched.toLowerCase();
+            searched = searched.trim();
+            return contact.name.toLowerCase().includes(searched) ? true : false;
         },
 
         // this function takes as input an object representing a contact
@@ -302,13 +308,11 @@ var app = new Vue({
             containerMessages.scrollTop = containerMessages.scrollHeight;
         },
 
-        // this function makes the first letter of a given string uppercase
-        capitalize(string) {
-            string = string.trim();
-            if (string != '') {
-                return string[0].toUpperCase() + string.slice(1).toLowerCase();
-            } else {
-                return '';
+        // this function resets the contacts search bar
+        resetSearch() {
+            if (this.showResetButton) {
+                this.contactSearched = '';
+                this.showResetButton = false;
             }
         },
 

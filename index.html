@@ -9,16 +9,16 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     </head>
     <body>
-        <div id="root">
+        <div id="root" v-cloak>
             <div id="container">
                 <!-- beginning of the panel's left part -->
                 <aside>
                     <header>
                         <div class="avatar">
-                            <img src="img/my_avatar.png">
+                            <img :src="'img/avatar' + user.avatar + '.png'">
                             <div class="info">
                                 <div class="name">
-                                    {{ me.name }}
+                                    {{ user.name }}
                                 </div>
                             </div>
                         </div>
@@ -47,15 +47,16 @@
                         </div>
 
                         <div id="search-bar">
-                            <button>
-                                <i class="fas fa-search"></i>
+                            <button @click="resetSearch">
+                                <i class="fas fa-search" v-if="!showResetButton"></i>
+                                <i class="fas fa-arrow-left" v-if="showResetButton"></i>
                             </button>
-                            <input placeholder="Cerca un contatto" v-model="contactSearched">
+                            <input placeholder="Cerca un contatto" v-model="contactSearched" @focus="showResetButton = true">
                         </div>
 
                         <div id="contacts">
-                            <div class="contact" v-for="(contact, index) in contacts" @click="currentIndex = index; showDropdown = undefined" :class="{'current' : currentIndex == index}" v-if="matched(contact, contactSearched)">
-                                <img :src="'img/avatar_' + (index + 1) + '.png'">
+                            <div class="contact" v-for="(contact, index) in contacts" @click="currentIndex = index; showDropdown = undefined" :class="{'current' : currentIndex == index}" v-if="matchTheSearch(contact)">
+                                <img :src="'img/avatar' + contact.avatar + '.png'">
                                 <div class="info">
                                     <div class="name">
                                         {{ contact.name }}
@@ -77,7 +78,7 @@
                 <main>
                     <header>
                         <div class="avatar">
-                            <img :src="'img/avatar_' + (currentIndex + 1) + '.png'">
+                            <img :src="'img/avatar' + contacts[currentIndex].avatar + '.png'">
                             <div class="info">
                                 <div class="name">
                                     {{ contacts[currentIndex].name }}
@@ -142,7 +143,7 @@
                 <!-- end of the panel's right part -->
             </div>
 
-            <div id="confirm-deletion" v-if="showDeletionWindow" v-cloak>
+            <div id="confirm-deletion" v-if="showDeletionWindow">
                 <div class="window">
                     <div class="question">
                         Sei sicuro di voler eliminare il messaggio?
