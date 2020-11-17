@@ -341,3 +341,7 @@ header .avatar {
 #confirm-deletion button:hover {
     background-color: rgb(207, 207, 207);
 }
+
+[v-cloak] {
+  display: none;
+}

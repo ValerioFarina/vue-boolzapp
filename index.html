@@ -54,7 +54,7 @@
                         </div>
 
                         <div id="contacts">
-                            <div class="contact" v-for="(contact, index) in contacts" @click="currentIndex = index" :class="{'current' : currentIndex == index}" v-if="matched(contact, contactSearched)">
+                            <div class="contact" v-for="(contact, index) in contacts" @click="currentIndex = index; showDropdown = undefined" :class="{'current' : currentIndex == index}" v-if="matched(contact, contactSearched)">
                                 <img :src="'img/avatar_' + (index + 1) + '.png'">
                                 <div class="info">
                                     <div class="name">
@@ -142,7 +142,7 @@
                 <!-- end of the panel's right part -->
             </div>
 
-            <div id="confirm-deletion" v-if="showDeletionWindow">
+            <div id="confirm-deletion" v-if="showDeletionWindow" v-cloak>
                 <div class="window">
                     <div class="question">
                         Sei sicuro di voler eliminare il messaggio?

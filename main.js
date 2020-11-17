@@ -204,7 +204,7 @@ var app = new Vue({
                 this.contacts[this.currentIndex].messages.push(myMessage);
 
                 // after the new message is added to the messages panel, the panel automatically scrolls to the end
-                setTimeout(this.scrollMessages, 1);
+                Vue.nextTick(this.scrollMessages);
 
                 // we reset the value of newMessage (i.e. the value of the input placed inside the div with id "send-message")
                 this.newMessage = '';
@@ -229,7 +229,7 @@ var app = new Vue({
             this.contacts[this.currentIndex].messages.push(receivedMessage);
 
             // after the answer is added to the messages panel, the panel automatically scrolls to the end
-            setTimeout(this.scrollMessages, 1);
+            Vue.nextTick(this.scrollMessages);
         },
 
         // this function creates a new object representing a new message
@@ -276,18 +276,15 @@ var app = new Vue({
         getDayOf(messageObject) {
             if (messageObject != undefined) {
                 let day = moment(messageObject.date, 'DD/MM/YY hh:mm:ss').format('L');
-                if (day == moment().format('L')) {
-                    return 'OGGI';
-                } else {
-                    return day == moment().format('L') ? 'OGGI' : day;
-                }
+                return day == moment().format('L') ? 'OGGI' : day;
             }
         },
 
         // this function checks if the name of a given contact matches the contact searched by the user
         // the comparison is not case sensitive
         matched(contact, contactSearched) {
-            return contact.name.startsWith(this.capitalize(contactSearched));
+            contactSearched = contactSearched.toLowerCase();
+            return contact.name.toLowerCase().includes(contactSearched) ? true : false;
         },
 
         // this function takes as input an object representing a contact
@@ -322,7 +319,9 @@ var app = new Vue({
 
     },
 
-    created : function() {
+    mounted : function() {
         moment.locale('it');
+
+        this.scrollMessages();
     }
 });
