@@ -10,13 +10,9 @@ var app = new Vue({
 
         showDropdown : undefined,
 
-        isWriting : false,
-
         showDeletionWindow : false,
 
         messageClicked : undefined,
-
-        showResetButton : false,
 
         user : {
             name : 'Valerio',
@@ -306,14 +302,6 @@ var app = new Vue({
             let containerMessages = document.getElementById("messages");
 
             containerMessages.scrollTop = containerMessages.scrollHeight;
-        },
-
-        // this function resets the contacts search bar
-        resetSearch() {
-            if (this.showResetButton) {
-                this.contactSearched = '';
-                this.showResetButton = false;
-            }
         },
 
         // this function generates a random integer

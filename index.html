@@ -47,11 +47,11 @@
                         </div>
 
                         <div id="search-bar">
-                            <button @click="resetSearch">
-                                <i class="fas fa-search" v-if="!showResetButton"></i>
-                                <i class="fas fa-arrow-left" v-if="showResetButton"></i>
+                            <button @click="contactSearched = ''">
+                                <i class="fas fa-search" v-if="contactSearched == ''"></i>
+                                <i class="fas fa-arrow-left" v-else></i>
                             </button>
-                            <input placeholder="Cerca un contatto" v-model="contactSearched" @focus="showResetButton = true">
+                            <input placeholder="Cerca un contatto" v-model="contactSearched">
                         </div>
 
                         <div id="contacts">
@@ -131,11 +131,11 @@
                                 <i class="far fa-smile"></i>
                             </div>
                             <div id="new-message">
-                                <input placeholder="Scrivi un messaggio" v-model="newMessage" @focus="isWriting = true" @blur="isWriting = false" @keypress.enter="sendMessage">
+                                <input placeholder="Scrivi un messaggio" v-model="newMessage" @keypress.enter="sendMessage">
                             </div>
                             <div class="icon" @click="sendMessage">
-                                <i class="fas fa-microphone" v-if="!isWriting"></i>
-                                <i class="fas fa-play send" v-if="isWriting"></i>
+                                <i class="fas fa-microphone" v-if="newMessage == ''"></i>
+                                <i class="fas fa-play send" v-else></i>
                             </div>
                         </div>
                     </section>
