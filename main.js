@@ -176,17 +176,6 @@ var app = new Vue({
                     }
                 ]
             }
-        ],
-
-        answers : [
-            'Non ci sono più le mezze stagioni',
-            'Si stava meglio quando si stava peggio',
-            'Sono sempre i migliori che se ne vanno',
-            'Non si finisce mai di imparare',
-            'Qui una volta era tutta campagna',
-            'Nella vita non si può mai sapere',
-            'Non c’è due senza tre',
-            'Quest’anno è proprio volato'
         ]
     },
 
@@ -220,17 +209,21 @@ var app = new Vue({
         // the answer will appear after one second
         // moreover, the ansew will be displayed (inside the div with id "messages") to the left and within a white box
         answer() {
-            // we pick from the array answers a random element which will be the text of our random answer
-            let rndAnswer = this.answers[this.getRndInteger(0, this.answers.length - 1)];
+            axios
+                .get('https://flynn.boolean.careers/exercises/api/random/sentence')
+                .then((responseObject) => {
+                    // we get from the API a random sentence which will be the text of our random answer
+                    let rndAnswer = responseObject.data.response;
 
-            // we generate a new object representing the randomly generated answer
-            let receivedMessage = this.getMessageObject(rndAnswer, 'received');
+                    // we generate a new object representing the randomly generated answer
+                    let receivedMessage = this.getMessageObject(rndAnswer, 'received');
 
-            // we add this randomly generated answer to the currently displayed conversation
-            this.contacts[this.currentIndex].messages.push(receivedMessage);
+                    // we add this randomly generated answer to the currently displayed conversation
+                    this.contacts[this.currentIndex].messages.push(receivedMessage);
 
-            // after the answer is added to the messages panel, the panel automatically scrolls to the end
-            Vue.nextTick(this.scrollMessages);
+                    // after the answer is added to the messages panel, the panel automatically scrolls to the end
+                    Vue.nextTick(this.scrollMessages);
+                });
         },
 
         // this function creates a new object representing a new message
